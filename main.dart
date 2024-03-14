@@ -37,40 +37,36 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text("Text Title"),
       ),
-      body: Container(
-        width: MediaQuery.of(context).size.width, // 전체 배경색 추가
-        height: MediaQuery.of(context).size.height,
-        color: Colors.yellow,
-        child: Stack(
-          children: [
-            Container(
-              width: 200,
-              height: 200,
-              color: Colors.blue,
-            ),
-            Container(
-              width: 200,
-              height: 200,
-              margin: const EdgeInsets.only(top: 50, left: 50),
-              color: Colors.red,
-            ),
-            Container(
-              width: 200,
-              height: 200,
-              margin: const EdgeInsets.only(top: 100, left: 100),
-              color: Colors.green,
-            ),
-            Container(
-              width: 200,
-              height: 200,
-              margin: const EdgeInsets.only(top: 150, left: 150),
-              color: Colors.orange,
-            )
-          ],
-        ),
-      ),
+      body: Center( //Center 가운데 정렬 위젯
+        child: GestureDetector( //GestureDetector: 도형 같은 버튼 감지
+          onTap: () => print("GestureDetector used"), //도형을 누르면 콘솔에 내용 출력
+          child: Container(
+            width: 200,
+            height: 200,
+            color: Colors.yellow,
+          ),
+        )
+      )
     );
   }
 }
+
+/*class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Text Title"),
+        ),
+        body: Center( //Center 가운데 정렬 위젯
+            child: TextButton(
+              //onPressed: 버튼을 누르면 콘솔창에 TextButton clicked가뜬다
+              onPressed: () => print("TextButton clicked"),
+              child: const Text("Text Button"), //버튼이름
+            )
+        )
+    );
+  }
+}*/
 
 
