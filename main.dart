@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -30,76 +29,45 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final postList = [
-    {
-      "title":"Sample Title 1",
-      "color":Colors.purple,
-    },
-    {
-      "title":"Sample Title 2",
-      "color":Colors.green,
-    },
-    {
-      "title":"Sample Title 3",
-      "color":Colors.blue,
-    },
-    {
-      "title":"Sample Title 4",
-      "color":Colors.yellow,
-    },
-    {
-      "title":"Sample Title 5",
-      "color":Colors.red,
-    },
-    {
-      "title":"Sample Title 6",
-      "color":Colors.orange,
-    }
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Text Title"),
-        ),
-        body: ListView.builder(
-          itemCount: postList.length,
-          itemBuilder: (BuildContext con, int index) {
-            return postContainer(
-              /*
-                각 데이터 타입에 맞게 "as 타입명"을 추가해 줘야함
-                 */
-              title: postList[index]["title"] as String,
-              colorData: postList[index]["color"] as Color,
-            );
-          },
-        )
+      appBar: AppBar(
+        title: const Text("GridView"),
+      ),
+      body: GridView(
+        /*
+        gridDelegate: 레이아웃을 컨트롤하는 요소
+         */
+        scrollDirection: Axis.horizontal,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 6, //가로축 두 줄
+            crossAxisSpacing: 15.0, // 열 사이 공간
+            mainAxisSpacing: 12.0 //메인 축을 기점으로 한 공간 명시
+            ),
+        children: [
+          postContainer(number: "1" ,colorData: Colors.amber),
+          postContainer(number: "2" ,colorData: Colors.blue),
+          postContainer(number: "3" ,colorData: Colors.red),
+          postContainer(number: "4" ,colorData: Colors.orange),
+          postContainer(number: "5" ,colorData: Colors.amber),
+          postContainer(number: "6" ,colorData: Colors.blue),
+          postContainer(number: "7" ,colorData: Colors.red),
+          postContainer(number: "8" ,colorData: Colors.orange),
+          postContainer(number: "9" ,colorData: Colors.amber),
+          postContainer(number: "10" ,colorData: Colors.blue),
+          postContainer(number: "11" ,colorData: Colors.red),
+          postContainer(number: "12" ,colorData: Colors.orange)
+        ],
+      ),
     );
   }
-  Widget postContainer({String title = '', Color colorData = Colors.yellow}) { //title과 color 값을 받아
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(10),
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Container(
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
-          height: 200,
-          color: colorData,
-        )
-      ],
+
+  Widget postContainer({String number = "0", Color colorData = Colors.amber}) {
+    return Container(
+      height: 200,
+      color: colorData,
+      child: Center(child: Text("Box $number")),
     );
   }
 }
-
