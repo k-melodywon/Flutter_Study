@@ -12,22 +12,22 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Text Title"),
-        ),
-        body: ListView(
-          scrollDirection: Axis.horizontal,
-          children: [
-            postContainer(title: "Title 1", colorData: Colors.yellow),
-            postContainer(title: "Title 2", colorData: Colors.blue),
-            postContainer(title: "Title 3", colorData: Colors.green),
-            postContainer(title: "Title 4", colorData: Colors.red),
-            postContainer(title: "Title 5", colorData: Colors.purple),
-          ],
-        )
+      appBar: AppBar(
+        title: const Text("Text Title"),
+      ),
+      body: ListView(
+      scrollDirection: Axis.horizontal,
+      children: [
+      postContainer(title: "Title 1", colorData: Colors.yellow),
+      postContainer(title: "Title 2", colorData: Colors.blue),
+      postContainer(title: "Title 3", colorData: Colors.green),
+      postContainer(title: "Title 4", colorData: Colors.red),
+      postContainer(title: "Title 5", colorData: Colors.purple),
+      ],
+    )
     );
   }
-  Widget postContainer({String title = '', Color colorData = Colors.yellow}) { //title과 color 값을 받아
+  Widget postContainer({String title = '', Color colorData = Colors.yellow}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -53,4 +53,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
