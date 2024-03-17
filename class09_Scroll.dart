@@ -1,25 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -39,23 +19,23 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             SizedBox( //범위 박스를 만들어 구분
-              height: MediaQuery.of(context).size.height/3,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 300,
-                      color: Colors.green,
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 300,
-                      color: Colors.red,
-                    ),
-                  ],
-                ),
-              )
+                height: MediaQuery.of(context).size.height/3,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 300,
+                        color: Colors.green,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 300,
+                        color: Colors.red,
+                      ),
+                    ],
+                  ),
+                )
             ),
             SizedBox( //범위 박스를 만들어 구분
                 height: MediaQuery.of(context).size.height/3,
@@ -82,4 +62,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
