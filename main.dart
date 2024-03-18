@@ -33,85 +33,39 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Align"),
+        title: const Text("AlertDialog"),
       ),
       body: Container(
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.amber,
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.blue,
-              ),
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.red,
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.amber,
-              ),
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.blue,
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.red,
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.amber,
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.blue,
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.red,
-              ),
-            ),
-          ],
-        ),
+       child: Center(
+         child: TextButton(
+           onPressed: (){
+             showDialog(
+                 context: context,
+                 builder: (BuildContext con){
+                   return AlertDialog(
+                     title: const Text("Dialog Title"),
+                     content: SingleChildScrollView( //내용이 길어지더라도 스크롤로 볼 수 있게 함
+                       child: Container(
+                         child: const Text("Dialog Content"),
+                       ),
+                     ),
+                     actions: [
+                       TextButton(
+                         onPressed: () => Navigator.of(context).pop(),
+                         child: const Text("Yes"),
+                       ),
+                       TextButton(
+                           onPressed: () => Navigator.of(context).pop(),
+                           child: const Text("Close"),
+                       )
+                     ],
+                   );
+                 }
+             );
+           },
+           child: const Text("Button"),
+         ),
+       ),
       ),
     );
   }
