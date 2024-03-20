@@ -1,25 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -36,16 +16,16 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text("Test App"),
       ),
       body: Container(
-        child: Column(
+        child: Column( //row
           children: [
-            Expanded( //fit가 타이트임
+            Expanded( //Flexible
               flex: 1,
               child: Container(
                 color: Colors.blue,
               ),
             ),
             Flexible(
-              flex: 2, //
+              flex: 2,
               child: Container(
                 color: Colors.green,
               ),
