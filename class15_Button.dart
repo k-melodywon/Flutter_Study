@@ -1,25 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -39,20 +19,20 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             Center(
-              child: ElevatedButton(
-                /*
+                child: ElevatedButton(
+                  /*
                 style: ElevatedButton.styleFrom 을 통해
                 버튼을 꾸밀 수 있음
                  */
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber,
-                  textStyle: TextStyle(
-                    fontSize: 20,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amber,
+                    textStyle: TextStyle(
+                      fontSize: 20,
+                    ),
                   ),
-                ),
-                onPressed: () => print("Elevated Button"),
-                child: const Text("ElevatedButton"),
-              )
+                  onPressed: () => print("Elevated Button"),
+                  child: const Text("ElevatedButton"),
+                )
             ),
             Center(
               child: TextButton(
