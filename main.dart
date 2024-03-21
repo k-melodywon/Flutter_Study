@@ -36,21 +36,19 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text("Test App"),
       ),
       body: Container(
-        child: Column(
-          children: [
-            Expanded( //fit가 타이트임
-              flex: 1,
-              child: Container(
-                color: Colors.blue,
-              ),
-            ),
-            Flexible(
-              flex: 2, //
-              child: Container(
-                color: Colors.green,
-              ),
-            )
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            gradient: RadialGradient(
+          center: Alignment.center,
+          colors: [
+            Colors.amber[100] as Color,
+            Colors.amber[200] as Color,
+            Colors.amber[300] as Color,
           ],
+          stops: const [0.1,0.2,0.3],
+          radius: 1.0, //숫자가 커질수록 그라데이션 범위가 넓어짐
+        )
         ),
       ),
     );
