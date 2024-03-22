@@ -1,0 +1,30 @@
+{
+  "users" : [
+    {
+      "id": 1,
+      "username": "PrincessChoi",
+      "email": "princess@gmail.com"
+    },
+    {
+      "id": 2,
+      "username": "Daniel",
+      "email": "Daniel@gmail.com"
+    },
+    {
+      "id": 3,
+      "username": "dukong",
+      "email": "dukong@gmail.com"
+    },
+    {
+      "id": 4,
+      "username": "Bori",
+      "email": "bori@gmail.com"
+    },
+    {
+      "id": 5,
+      "username": "Okdol",
+      "email": "okdol@gmail.com"
+    }
+
+  ]
+}
