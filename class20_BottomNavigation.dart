@@ -1,28 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  //setState 사용이 불가하여 stf에서 사용해야함
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -41,7 +18,7 @@ class _MyHomePageState extends State<MyHomePage>
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(() => setState(() =>
-        _selectedIndex = _tabController.index)); // setState를 통해 플러터의 상태 업데이트 가능
+    _selectedIndex = _tabController.index)); // setState를 통해 플러터의 상태 업데이트 가능
   }
 
   @override
@@ -59,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage>
       body: _selectedIndex == 0 //버튼을 누를 때 화면이 바뀌는 기능
           ? tabContainer(context, Colors.indigo, "Friends Tab")
           : _selectedIndex == 1
-              ? tabContainer(context, Colors.amber[600] as Color, "Chat Tab")
-              : tabContainer(context, Colors.blueGrey, "Settings Tab"),
+          ? tabContainer(context, Colors.amber[600] as Color, "Chat Tab")
+          : tabContainer(context, Colors.blueGrey, "Settings Tab"),
       bottomNavigationBar: TabBar(
         controller: _tabController,
         labelColor: Colors.black,
@@ -68,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage>
           Tab(
             icon: Icon(
               //버튼을 누를 때 테두리가 진해지도록 활성화
-              _selectedIndex == 0 ? Icons.person : Icons.person_2_outlined
+                _selectedIndex == 0 ? Icons.person : Icons.person_2_outlined
             ),
             text: "Friends",
           ),
