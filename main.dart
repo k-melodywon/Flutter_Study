@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dio/dio.dart';
+import 'package:project/product.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  //setState 사용이 불가하여 stf에서 사용해야함
   const MyApp({super.key});
 
   // This widget is the root of your application.
@@ -31,75 +30,74 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-  int _selectedIndex = 0;
-
+class _MyHomePageState extends State<MyHomePage> {
+  late Future<List<Product>> productList;
+  Dio dio = Dio();
   @override
-  void initState() {
+  void initState(){
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
-    _tabController.addListener(() => setState(() =>
-        _selectedIndex = _tabController.index)); // setState를 통해 플러터의 상태 업데이트 가능
+    productList = getProductData(); // 데이터를 받아오는 역할
   }
 
+  Future<List<Product>> getProductData() async{
+    late List<Product> products;
+    try {
+      var response = await dio.get("https://dummyjson.com/products");
+      products = response.data['products']
+      .map<Product>((json) => Product.fromJson(json)).toList(); //key와 매핑 완료
+      print("refreshed!");
+    } catch (e) {
+      print(e);
+    }
+    return products;
+  }
+
+  //refresh에 필요한 메서드 생성
+  Future<void> refreshData() async {
+    productList = getProductData();
+    setState(() {});
+  }
   @override
-  void dispose() {
-    //페이지가 종료 됐을 때, 불필요한 내용을 지워 줌
-    _tabController.dispose();
-    super.dispose();
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bottom Navigation"),
+        title: const Text("Refresh Indicator"),
       ),
-      body: _selectedIndex == 0 //버튼을 누를 때 화면이 바뀌는 기능
-          ? tabContainer(context, Colors.indigo, "Friends Tab")
-          : _selectedIndex == 1
-              ? tabContainer(context, Colors.amber[600] as Color, "Chat Tab")
-              : tabContainer(context, Colors.blueGrey, "Settings Tab"),
-      bottomNavigationBar: TabBar(
-        controller: _tabController,
-        labelColor: Colors.black,
-        tabs: [
-          Tab(
-            icon: Icon(
-              //버튼을 누를 때 테두리가 진해지도록 활성화
-              _selectedIndex == 0 ? Icons.person : Icons.person_2_outlined
-            ),
-            text: "Friends",
+      body: RefreshIndicator(
+        onRefresh: () => refreshData(),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: FutureBuilder<List<Product>>( //변수가 나중에 초기화되기 때문에 처음에 값이 없어서 오류가 날 수 있음. 때문에 FutureBuilder를 사용
+            future: productList,
+            builder: (BuildContext con, AsyncSnapshot snapshot) {
+              if (!snapshot.hasData){
+                return const Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                  ),
+                );
+              } else {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext cont, int index){
+                    var data = snapshot.data[index];
+                    return Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 1, color: Colors.black26),
+                      ),
+                      child: Text("${data.title}(${data.description})"),
+                    );
+                  },
+                );
+              }
+            },
           ),
-          Tab(
-            icon: Icon(
-                _selectedIndex == 1 ? Icons.chat : Icons.chat_outlined
-            ),
-            text: "Chats",
-          ),
-          Tab(
-            icon: Icon(
-                _selectedIndex == 1 ? Icons.settings : Icons.settings_outlined
-            ),
-            text: "Settings",
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget tabContainer(BuildContext con, Color tabColor, String tabText) {
-    return Container(
-      width: MediaQuery.of(con).size.width,
-      height: MediaQuery.of(con).size.height,
-      color: tabColor,
-      child: Center(
-        child: Text(
-          tabText,
-          style: const TextStyle(color: Colors.white),
         ),
       ),
     );
   }
 }
+
