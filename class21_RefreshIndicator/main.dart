@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project/class21_RefreshIndicator/view/album_view.dart';
+import 'package:project/product.dart';
+import 'package:project/class21_RefreshIndicator/view/album_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      home: const AlbumView(),
     );
   }
 }
