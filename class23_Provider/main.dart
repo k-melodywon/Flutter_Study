@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project/class22_Provider/provider/album_provider.dart';
-import 'package:project/class22_Provider/view/album_view.dart';
+import 'package:project/class23_Provider/provider/album_provider.dart';
+import 'package:project/class23_Provider/view/album_view.dart';
 import 'package:provider/provider.dart';
 
 

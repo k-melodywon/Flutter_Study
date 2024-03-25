@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/class21_RefreshIndicator/view/album_view.dart';
-import 'package:project/product.dart';
-import 'package:project/class21_RefreshIndicator/view/album_view.dart';
+import 'package:project/class22_BLoC/view/album_view.dart';
 
 void main() {
   runApp(const MyApp());

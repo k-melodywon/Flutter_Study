@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:project/class21_RefreshIndicator/model/albums.dart';
+import 'package:project/class22_BLoC/model/albums.dart';
 import 'package:http/http.dart' show Client;
 
 class AlbumApiProvider {

@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:project/class22_Provider/provider/album_provider.dart";
+import "package:project/class23_Provider/provider/album_provider.dart";
 import "package:provider/provider.dart";
 import "../model/album.dart";
 
