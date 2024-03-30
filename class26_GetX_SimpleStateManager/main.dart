@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GetBuilder<CountController>(
+              GetBuilder<CountController>( //GetBuilder를 사용해서 Provider과 다른게 없음
                 init: CountController(),
                 builder: (_) =>
                     Text("현재 카운트: ${Get
