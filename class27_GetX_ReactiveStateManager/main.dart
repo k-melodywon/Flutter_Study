@@ -9,7 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  final StudentController _con = Get.put(StudentController());
+  final StudentController _con = Get.put(StudentController()); //의존성 주입
 
   @override
   Widget build(BuildContext context) {
