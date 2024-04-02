@@ -27,7 +27,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _url = 'https//jsonplaceholder.typicode.com/album';
+  final _url = 'https://jsonplaceholder.typicode.com/album';
   int _page = 1;
   final int _limit = 20;
   bool _hasNextPage = true; //다음 페이지가 있는 경우
