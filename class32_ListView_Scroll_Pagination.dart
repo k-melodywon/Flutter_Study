@@ -69,7 +69,8 @@ class _HomePageState extends State<HomePage> {
     if (_hasNextPage &&
         !_isFirstLoadRunning &&
         !_isLoadMoreRunning &&
-        _controller.position.extentAfter < 100) { //페이지 끝남을 감지하는 속도
+        _controller.position.extentAfter < 100) {
+      //페이지 끝남을 감지하는 속도
       //스크롤 가능 뷰포트
       setState(() {
         _isLoadMoreRunning = true;
@@ -77,9 +78,10 @@ class _HomePageState extends State<HomePage> {
       _page += 1;
       try {
         final res =
-            await http.get(Uri.parse("$_url?_page=$_page&_limit-$_limit"));
+            await http.get(Uri.parse("$_url?_page=$_page&_limit=$_limit"));
         final List fetchedAlbums = json.decode(res.body);
-        if (fetchedAlbums.isEmpty) {
+        if (fetchedAlbums.isNotEmpty) {
+          // fetchedAlbums가 비어있는 경우에 추가하지 않아야 합니다.
           setState(() {
             _albumList.addAll(fetchedAlbums);
           });
